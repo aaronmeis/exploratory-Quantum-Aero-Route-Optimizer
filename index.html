@@ -115,12 +115,48 @@
                 transform: scale(1);
             }
         }
+
+        .visualizer-container {
+            margin-top: 2.5rem;
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+        }
+
+        .visualizer-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 
-<body>
+<body style="overflow-y: auto;">
     <div class="grid-bg"></div>
-    <div class="container">
+    <div class="container" style="margin: 2rem auto; overflow: visible;">
         <h1>Quantum-Inspired Route Optimization for Aerospace Logistics</h1>
         <span class="type">Graph Solver with D-Wave Sims</span>
 
@@ -135,26 +171,14 @@
                 measured—model that raw."</p>
         </div>
 
-        <div style="margin-top: 2.5rem; text-align: center;">
-            <a href="visualizer.html" style="
-                display: inline-block;
-                padding: 1rem 2rem;
-                background: var(--accent);
-                color: var(--bg);
-                text-decoration: none;
-                font-family: 'Outfit', sans-serif;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                border-radius: 50px;
-                box-shadow: 0 0 20px var(--accent-glow);
-                transition: all 0.3s ease;
-            " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 5px 25px var(--accent-glow)'"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 20px var(--accent-glow)'">
-                Launch 3D Visualizer
-            </a>
+        <div class="visualizer-container">
+            <iframe src="visualizer.html" title="Aerospace Logistics Visualizer"></iframe>
         </div>
 
+        <div class="footer-links">
+            <span>&copy; 2026 Quantum Aero Labs</span>
+            <a href="visualizer.html" target="_blank">Launch Full Screen ↗</a>
+        </div>
     </div>
 </body>
 
