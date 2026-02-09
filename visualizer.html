@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Aerospace Logistics | Quantum Routing</title>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #050505; font-family: 'Courier New', Courier, monospace; }
-        #canvas-container { width: 100vw; height: 100vh; display: block; }
-        
+        body,
+        html,
+        #canvas-container {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #fallback-check {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: monospace;
+            font-size: 10px;
+            color: #475569;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+
         /* UI Overlay */
         #ui-layer {
             position: absolute;
             top: 20px;
             left: 20px;
             color: #00ffff;
-            pointer-events: none; /* Let clicks pass through to canvas */
+            pointer-events: none;
+            /* Let clicks pass through to canvas */
         }
-        
+
         h1 {
             margin: 0;
             font-size: 24px;
@@ -102,6 +129,7 @@
             text-align: center;
             z-index: 10;
         }
+
         #savings-popup small {
             display: block;
             font-size: 16px;
@@ -112,7 +140,10 @@
         /* Loading Overlay */
         #loader {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: #000;
             display: flex;
             justify-content: center;
@@ -126,6 +157,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
+
 <body>
 
     <div id="loader">INITIALIZING QUANTUM ROUTING ENGINE...</div>
@@ -238,7 +270,7 @@
 
             createEarth();
             createDisruptionZone();
-            
+
             // create routes
             createRoute(locations.London, locations.Tokyo);
             createRoute(locations.NewYork, locations.Dubai);
@@ -310,7 +342,7 @@
                 wireframe: true
             });
             disruptionZone = new THREE.Mesh(geometry, material);
-            
+
             // Position roughly over Central Asia
             const pos = latLonToVector3(45, 60, config.earthRadius + 2);
             disruptionZone.position.copy(pos);
@@ -356,7 +388,7 @@
             const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
             const points = curve.getPoints(50);
             const geometry = new THREE.BufferGeometry().setFromPoints(points);
-            
+
             // Save original positions for disruption morphing
             geometry.userData = { originalPoints: points.map(p => p.clone()) };
 
@@ -380,22 +412,22 @@
                 group.ghosts.forEach((ghost, i) => {
                     const positions = ghost.mesh.geometry.attributes.position;
                     const originalPoints = ghost.mesh.geometry.userData.originalPoints;
-                    
+
                     // 1. Quantum Jitter (Visual noise)
                     if (!state.optimized) {
                         for (let j = 1; j < originalPoints.length - 1; j++) { // Don't move start/end
                             const original = originalPoints[j];
                             // Gentle sine wave wobble
                             const wobble = Math.sin(time * 2 + ghost.offsetSeed * 10 + j * 0.5) * 0.1;
-                            
+
                             // Disruption Logic
-                            let avoidance = new THREE.Vector3(0,0,0);
+                            let avoidance = new THREE.Vector3(0, 0, 0);
                             if (state.disrupted) {
                                 // Calculate distance from this point to the disruption zone
                                 const pointWorldPos = original.clone().applyMatrix4(ghost.mesh.matrixWorld); // Approximate
                                 // Simple distance check in local space since earth doesn't rotate mesh-wise, just camera/group
                                 const dist = original.distanceTo(disruptionZone.position);
-                                
+
                                 if (dist < 6) {
                                     // Push away from disruption center
                                     const dir = original.clone().sub(disruptionZone.position).normalize();
@@ -404,9 +436,9 @@
                             }
 
                             positions.setXYZ(
-                                j, 
+                                j,
                                 original.x + wobble + avoidance.x,
-                                original.y + wobble + avoidance.y, 
+                                original.y + wobble + avoidance.y,
                                 original.z + wobble + avoidance.z
                             );
                         }
@@ -414,7 +446,7 @@
                         // Collapse to single path logic is handled in opacity, 
                         // but we might want to straighten the remaining line slightly
                     }
-                    
+
                     positions.needsUpdate = true;
                 });
             });
@@ -424,7 +456,7 @@
             requestAnimationFrame(animate);
             controls.update();
             updateRoutes();
-            
+
             // Rotate Earth slowly
             // earth.rotation.y += config.rotationSpeed;
             // Atmosphere follows
@@ -446,7 +478,7 @@
 
         // --- UI Interactions ---
 
-        window.toggleDisruption = function() {
+        window.toggleDisruption = function () {
             state.disrupted = !state.disrupted;
             const btn = document.getElementById('btn-disrupt');
             const threatLevel = document.getElementById('threat-level');
@@ -456,7 +488,7 @@
                 disruptionZone.material.opacity = 0.6;
                 threatLevel.innerText = "CRITICAL (ZONE 4)";
                 threatLevel.style.color = "#ff0055";
-                
+
                 // If optimized, revert to superposition to show recalculation
                 if (state.optimized) resetSystem(false); // Don't reset disruption
             } else {
@@ -467,15 +499,15 @@
             }
         };
 
-        window.optimizeRoutes = function() {
+        window.optimizeRoutes = function () {
             if (state.optimized) return;
             state.optimized = true;
-            
+
             document.getElementById('state-text').innerText = "COLLAPSED (OPTIMIZED)";
             document.getElementById('state-text').style.color = "#00ff00";
             document.getElementById('fuel-eff').innerText = "+18.4% SAVINGS";
             document.getElementById('fuel-eff').style.color = "#00ff00";
-            
+
             // Show popup
             const popup = document.getElementById('savings-popup');
             popup.style.opacity = 1;
@@ -485,7 +517,7 @@
             routeGroups.forEach(group => {
                 // Find "best" path - for simulation, we pick a random one in the middle
                 const bestIndex = Math.floor(group.ghosts.length / 2);
-                
+
                 group.ghosts.forEach((ghost, index) => {
                     if (index === bestIndex) {
                         // Make this the hero path
@@ -500,9 +532,9 @@
             });
         };
 
-        window.resetSystem = function(fullReset = true) {
+        window.resetSystem = function (fullReset = true) {
             state.optimized = false;
-            
+
             document.getElementById('state-text').innerText = "SUPERPOSITION";
             document.getElementById('state-text').style.color = "#ff00ff";
             document.getElementById('fuel-eff').innerText = "ANALYZING...";
@@ -537,4 +569,5 @@
 
     </script>
 </body>
+
 </html>
