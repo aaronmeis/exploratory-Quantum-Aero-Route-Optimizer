@@ -32,7 +32,8 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1400px;
+            width: 95%;
             padding: 2.5rem;
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -40,11 +41,26 @@
             backdrop-filter: blur(15px);
             box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
             animation: fadeIn 1.2s ease-out;
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .text-content {
+            flex: 0 0 25%;
+            /* Slightly more than 20% for better text readability */
+            min-width: 250px;
+        }
+
+        .visualizer-area {
+            flex: 1;
+            width: 100%;
         }
 
         h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
+            margin-top: 0;
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
@@ -58,27 +74,28 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
             display: block;
         }
 
         .description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: #b0b0d0;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .first-principles {
-            padding: 1.5rem;
+            padding: 1.2rem;
             background: rgba(0, 242, 255, 0.03);
             border-left: 4px solid var(--accent);
             border-radius: 4px;
+            font-size: 0.9rem;
         }
 
         .first-principles h2 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-top: 0;
             color: #fff;
         }
@@ -104,23 +121,10 @@
             opacity: 0.3;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         .visualizer-container {
-            margin-top: 2.5rem;
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 600px;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border);
@@ -151,33 +155,66 @@
         .footer-links a:hover {
             opacity: 1;
         }
+
+        /* Mobile Layout */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                margin: 1rem auto;
+                padding: 1.5rem;
+            }
+
+            .text-content {
+                flex: none;
+                width: 100%;
+            }
+
+            .visualizer-container {
+                height: 400px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 
 <body style="overflow-y: auto;">
     <div class="grid-bg"></div>
-    <div class="container" style="margin: 2rem auto; overflow: visible;">
-        <h1>Quantum-Inspired Route Optimization for Aerospace Logistics</h1>
-        <span class="type">Graph Solver with D-Wave Sims</span>
+    <div class="container" style="margin: 3rem auto; overflow: visible;">
+        <div class="text-content">
+            <h1>Quantum-Inspired Route Optimization</h1>
+            <span class="type">Aero Logistics Simulation</span>
 
-        <p class="description">
-            Simulate quantum annealing for optimizing shipment routes in global aerospace supply chains—handling
-            disruptions from geopolitics or weather, inspired by Starship's point-to-point potential.
-        </p>
+            <p class="description">
+                Optimizing global aerospace supply chains—handling disruptions from geopolitics or weather.
+            </p>
 
-        <div class="first-principles">
-            <h2>First Principles</h2>
-            <p>"Distance ain't linear; it's fuel, wind, gravity vectors. Superposition means all paths exist till
-                measured—model that raw."</p>
+            <div class="first-principles">
+                <h2>First Principles</h2>
+                <p>"Distance ain't linear; it's fuel, wind, gravity vectors. Superposition means all paths exist till
+                    measured."</p>
+            </div>
+
+            <div class="footer-links" style="flex-direction: column; gap: 0.5rem; align-items: flex-start;">
+                <a href="visualizer.html" target="_blank" style="margin-top: 1rem; opacity: 1;">Launch Full Screen ↗</a>
+                <span style="opacity: 0.4;">&copy; 2026 Quantum Aero Labs</span>
+            </div>
         </div>
 
-        <div class="visualizer-container">
-            <iframe src="visualizer.html" title="Aerospace Logistics Visualizer"></iframe>
-        </div>
-
-        <div class="footer-links">
-            <span>&copy; 2026 Quantum Aero Labs</span>
-            <a href="visualizer.html" target="_blank">Launch Full Screen ↗</a>
+        <div class="visualizer-area">
+            <div class="visualizer-container">
+                <iframe src="visualizer.html" title="Aerospace Logistics Visualizer"></iframe>
+            </div>
         </div>
     </div>
 </body>
