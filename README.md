@@ -1,4 +1,7 @@
-# Quantum-Inspired Route Optimization for Aerospace Logistics
+# Quantum Aero Route Optimizer
+
+> [!NOTE]
+> This is for exploratory learning and understanding and knowledge development with mockup data from Kaggle and NASA.
 
 **Type**: Graph solver with D-Wave sims
 
