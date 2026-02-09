@@ -10,6 +10,11 @@
 
 **Impact Context**: From recent reports, quantum helps real-time routing in defense logistics—eighteen percent fuel savings.
 
+## Interactive 3D Visualizer
+🚀 **[Launch Global Aerospace Logistics Visualizer](visualizer.html)**
+Explore the "Superposition of Paths" and simulate geopolitical disruptions in real-time.
+
+
 ## Overview
 This repository explores the intersection of classical mechanics (gravity-based path optimization) and quantum computing (annealing for TSP/routing).
 

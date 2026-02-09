@@ -48,6 +48,7 @@
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
         }
@@ -133,6 +134,27 @@
             <p>"Distance ain't linear; it's fuel, wind, gravity vectors. Superposition means all paths exist till
                 measured—model that raw."</p>
         </div>
+
+        <div style="margin-top: 2.5rem; text-align: center;">
+            <a href="visualizer.html" style="
+                display: inline-block;
+                padding: 1rem 2rem;
+                background: var(--accent);
+                color: var(--bg);
+                text-decoration: none;
+                font-family: 'Outfit', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                border-radius: 50px;
+                box-shadow: 0 0 20px var(--accent-glow);
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 5px 25px var(--accent-glow)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 20px var(--accent-glow)'">
+                Launch 3D Visualizer
+            </a>
+        </div>
+
     </div>
 </body>
 
