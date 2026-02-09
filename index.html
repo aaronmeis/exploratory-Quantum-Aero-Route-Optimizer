@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum-Inspired Route Optimization for Aerospace Logistics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09091a;
+            --text: #e1e1fb;
+            --accent: #00f2ff;
+            --accent-glow: rgba(0, 242, 255, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(0, 242, 255, 0.15);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .type {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #b0b0d0;
+            margin-bottom: 2rem;
+        }
+
+        .first-principles {
+            padding: 1.5rem;
+            background: rgba(0, 242, 255, 0.03);
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .first-principles h2 {
+            font-size: 1rem;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .first-principles p {
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            perspective: 500px;
+            transform: rotateX(60deg) scale(2);
+            opacity: 0.3;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-bg"></div>
+    <div class="container">
+        <h1>Quantum-Inspired Route Optimization for Aerospace Logistics</h1>
+        <span class="type">Graph Solver with D-Wave Sims</span>
+
+        <p class="description">
+            Simulate quantum annealing for optimizing shipment routes in global aerospace supply chains—handling
+            disruptions from geopolitics or weather, inspired by Starship's point-to-point potential.
+        </p>
+
+        <div class="first-principles">
+            <h2>First Principles</h2>
+            <p>"Distance ain't linear; it's fuel, wind, gravity vectors. Superposition means all paths exist till
+                measured—model that raw."</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+# Quantum-Aero-Route-Optimizer Requirements
+# dwave-ocean-sdk
+# networkx
+# matplotlib
+# numpy
+# scipy
